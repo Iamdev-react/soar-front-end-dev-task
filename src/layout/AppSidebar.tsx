@@ -1,6 +1,6 @@
 import { useSidebar } from "../context/SidebarContext";
-import { useLocation, Link } from "react-router-dom"; 
-import {CreditCard,Econometrics,EconomicInvestment,Glyph,Loan,SelectedDashboard,SelectedSettings,Service,User} from "../assets/Icons";
+import { useLocation, Link } from "react-router-dom";
+import { CreditCard, Econometrics, EconomicInvestment, Glyph, Loan, SelectedDashboard, SelectedSettings, Service, User } from "../assets/Icons";
 
 type NavItem = {
   name: string;
@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
 ];
 
 const AppSidebar: React.FC = () => {
-  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const { isExpanded, isMobileOpen, isHovered, setIsHovered, setIsMobileOpen } = useSidebar();
   const location = useLocation();
 
   const renderMenuItems = (items: NavItem[]) => (
@@ -41,21 +41,20 @@ const AppSidebar: React.FC = () => {
         return (
           <li
             key={nav.name}
-            className="flex items-center relative pl-5 after:absolute after:left-0 after:content-[] after:border after:border-l-3 after:h-10 after:rounded-tr-md after:rounded-br-md"
+            className={`flex items-center relative pl-5 select-none
+              ${isActive ? "after:absolute after:left-0 after:content-[] after:border after:border-l-3 after:h-10 after:rounded-tr-md after:rounded-br-md" : ""}`}
           >
             {nav.path ? (
-              <Link to={nav.path} className="flex items-center">
+              <Link onClick={() => setIsMobileOpen(false)} to={nav.path} className="flex items-center">
                 <span
-                  className={`flex items-center ${
-                    isActive ? "text-black" : "text-[#B1B1B1]"
-                  }`}
+                  className={`flex items-center ${isActive ? "text-black" : "text-[#B1B1B1]"
+                    }`}
                 >
                   {nav.icon}
                 </span>
                 <span
-                  className={`ml-6 font-medium text-lg ${
-                    isActive ? "text-black" : "text-[#B1B1B1]"
-                  }`}
+                  className={`ml-6 font-medium text-lg ${isActive ? "text-black" : "text-[#B1B1B1]"
+                    }`}
                 >
                   {nav.name}
                 </span>
@@ -78,11 +77,10 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-0 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
-        ${
-          (isExpanded || isMobileOpen)
-            ? "w-[240px]"
-            : isHovered
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-0 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-999999 border-r border-gray-200 
+        ${(isExpanded || isMobileOpen)
+          ? "w-[240px]"
+          : isHovered
             ? "w-[240px]"
             : "w-[90px]"
         }

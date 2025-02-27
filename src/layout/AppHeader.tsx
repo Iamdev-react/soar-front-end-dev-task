@@ -2,19 +2,11 @@ import { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
 import { useSidebar } from "../context/SidebarContext";
 import { SettingsBlueIcon, BellIcon, CloseIcon, HamburgerMenu, Search} from "../assets/Icons";
-import { AppDispatch, RootState } from "../config/store";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUserData } from "../redux/user/userAPI";
 
 const AppHeader: React.FC = () => {
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
-  const dispatch = useDispatch<AppDispatch>();
-  const { userData } = useSelector((state: RootState) => state.user);
 
   const location = useLocation();
-  useEffect(() => {
-    dispatch(fetchUserData());
-  }, [dispatch]);
 
   const getTitle = () => {
     switch (location.pathname) {
@@ -26,6 +18,7 @@ const AppHeader: React.FC = () => {
         return "";
     }
   };
+
   const handleToggle = () => {
     if (window.innerWidth >= 991) {
       toggleSidebar();
@@ -101,17 +94,17 @@ const AppHeader: React.FC = () => {
             </form>
           </div>
           <div className="flex items-center gap-4 2xsm:gap-3">
-            <button className="relative flex items-center justify-center transition-colors bg-[#F5F7FA] border-none h-[50px] w-[50px] rounded-full">
+            <button className="relative flex items-center justify-center transition-colors bg-[#F5F7FA] border-none h-[50px] w-[50px] rounded-full md:flex hidden">
               <SettingsBlueIcon style={{ width: "25px", height: "25px" }} />
             </button>
 
-            <button className="relative flex items-center justify-center transition-colors bg-[#F5F7FA] border-none h-[50px] w-[50px] rounded-full">
+            <button className="relative flex items-center justify-center transition-colors bg-[#F5F7FA] border-none h-[50px] w-[50px] rounded-full md:flex hidden">
               <BellIcon style={{ width: "25px", height: "25px" }} />
             </button>
 
             <div className="md:inline-block hidden">
               <img
-                src={userData?.avatar || "/defaultImage.png"}
+                src="user.png"
                 className="rounded-full h-[60px] w-[60px]"
               />
             </div>

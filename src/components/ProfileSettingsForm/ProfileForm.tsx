@@ -37,7 +37,7 @@ const ProfileForm: React.FC = () => {
                     src={
                       selectedImage || userData?.avatar || "/defaultImage.png"
                     }
-                    alt="User Avatar"
+                    alt="Profile"
                     className="w-[90px] h-[90px] rounded-full object-cover"
                   />
                 )}

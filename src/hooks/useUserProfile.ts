@@ -13,14 +13,21 @@ export const useUserProfile = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
-    dispatch(fetchUserData());
+    if(!userData) {
+      dispatch(fetchUserData());
+    }
   }, [dispatch]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
+      const reader = new FileReader();
+      
+      reader.onloadend = () => {
+        setSelectedImage(reader.result as string);
+      };
+  
+      reader.readAsDataURL(file);
     }
   };
 

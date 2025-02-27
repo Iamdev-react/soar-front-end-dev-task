@@ -18,9 +18,11 @@ export default function Home() {
   );
 
   useEffect(() => {
-    
-    dispatch(fetchDashboardData());
+    if(data?.length <= 0) {
+      dispatch(fetchDashboardData());
+    }
   }, [dispatch]);
+  
   const dashboard = useMemo(() => (data?.length ? data[0] : {}), [data]);
 
   if (loading) return <Loader />;
