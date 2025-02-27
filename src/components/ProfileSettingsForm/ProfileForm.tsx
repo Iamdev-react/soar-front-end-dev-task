@@ -34,7 +34,9 @@ const ProfileForm: React.FC = () => {
               <div className="relative w-24 mx-auto md:mx-0">
                 {userData && (
                   <img
-                    src={selectedImage || userData?.avatar}
+                    src={
+                      selectedImage || userData?.avatar || "/defaultImage.png"
+                    }
                     alt="User Avatar"
                     className="w-[90px] h-[90px] rounded-full object-cover"
                   />

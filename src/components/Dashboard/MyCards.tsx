@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  CardDarkIcon,
-  CardLightIcon,
-  ChipDarkIcon,
-  ChipIcon,
-} from "../../assets/Icons";
+import { CardDarkIcon, CardLightIcon, ChipDarkIcon, ChipIcon} from "../../assets/Icons";
 import { MyCardsProps } from "../../type/dahboardTypes";
 
 const MyCards: React.FC<MyCardsProps> = ({ cards }) => {

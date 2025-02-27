@@ -2,13 +2,9 @@ export interface WeeklyActivityChartProps {
   weeklyActivity: { day: string; deposit: number; withdraw: number }[];
 }
 
-//-------------------------------------------------------------------------------
-
 export interface BalanceHistoryChartProps {
   balanceHistory: { month: string; balance: number }[];
 }
-
-//-------------------------------------------------------------------------------
 
 export interface CardData {
   type: string;
@@ -21,7 +17,7 @@ export interface CardData {
 export interface MyCardsProps {
   cards: CardData[];
 }
-//-------------------------------------------------------------------------------
+
 export interface User {
   id: number;
   name: string;
@@ -35,8 +31,6 @@ export interface QuickTransferProps {
   };
 }
 
-//-------------------------------------------------------------------------------
-
 export interface Transaction {
   title: string;
   date: string;
@@ -48,7 +42,7 @@ export interface Transaction {
 export interface RecentTransactionsProps {
   transactions: Transaction[];
 }
-// -------------------------------------------------------------------------------
+
 export interface ChartLabelProps {
   cx: number;
   cy: number;

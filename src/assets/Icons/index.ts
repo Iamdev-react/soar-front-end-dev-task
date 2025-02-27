@@ -15,6 +15,11 @@ import { ReactComponent as ChipIcon } from "./chip-card.svg?react";
 import { ReactComponent as CardLightIcon } from "./card-circle-light.svg?react";
 import { ReactComponent as ChipDarkIcon } from "./chip-card-dark.svg?react";
 import { ReactComponent as CardDarkIcon } from "./card-circle-dark.svg?react";
+import { ReactComponent as CloseIcon } from "./close-icon.svg?react";
+import { ReactComponent as HamburgerMenu } from "./hamburgerMenu.svg?react";
+import { ReactComponent as Search } from "./search.svg?react";
+import { ReactComponent as SelectedDashboard } from "./selectedDashboard.svg?react";
+import { ReactComponent as SelectedSettings } from "./selectedSetting.svg?react";
 
 export {
   CreditCard,
@@ -34,4 +39,9 @@ export {
   CardLightIcon,
   ChipDarkIcon,
   CardDarkIcon,
+  CloseIcon,
+  HamburgerMenu,
+  Search,
+  SelectedDashboard,
+  SelectedSettings,
 };

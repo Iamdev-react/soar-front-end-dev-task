@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Label } from "recharts";
+import { PieChart, Pie, Cell } from "recharts";
 import { ChartLabelProps } from "../../type/dahboardTypes";
 
 const CustomPieChart = ({ expense = [] }) => {
@@ -8,19 +8,11 @@ const CustomPieChart = ({ expense = [] }) => {
     color,
   }));
 
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    value,
-    index,
-  }: ChartLabelProps) => {
-    const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,value, index}: ChartLabelProps) => {
+    const radian = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.7;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    const x = cx + radius * Math.cos(-midAngle * radian);
+    const y = cy + radius * Math.sin(-midAngle * radian);
 
     return (
       <text

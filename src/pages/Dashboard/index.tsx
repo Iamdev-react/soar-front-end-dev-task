@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import WeeklyActivityChart from "../../components/Dashboard/WeeklyActivityChart";
 import BalanceHistoryChart from "../../components/Dashboard/BalanceHistoryChart";
 import ExpenseStatisticsChart from "../../components/Dashboard/ExpenseStatisticsChart";
@@ -18,20 +18,15 @@ export default function Home() {
   );
 
   useEffect(() => {
+    
     dispatch(fetchDashboardData());
   }, [dispatch]);
+  const dashboard = useMemo(() => (data?.length ? data[0] : {}), [data]);
 
-  if (loading)
-    return (
-      <p>
-        <Loader />
-      </p>
-    );
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error}</p>;
   if (!data.length) return <p>No data available</p>;
 
-  const dashboard = data[0];
-  console.log(dashboard, "dashboard");
   return (
     <div>
       <div className="p-4 md:p-6 bg-white md:bg-transparent">

@@ -12,8 +12,8 @@ const QuickTransfer: React.FC<QuickTransferProps> = ({ quickTransfer }) => {
       <div className="bg-white rounded-3xl md:shadow p-4 h-[250px]">
         {/* Avatars Row */}
         <div className="flex items-center space-x-4 mb-12 pt-4">
-          {quickTransfer.users.map((user) => (
-            <div key={user.id} className="flex flex-col items-center">
+          {quickTransfer.users.map((user,index) => (
+            <div key={user.id || index} className="flex flex-col items-center">
               <img
                 src={userImage}
                 alt={user.name}
