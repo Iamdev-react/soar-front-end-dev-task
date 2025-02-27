@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router";
-import { useSidebar } from "../context/SidebarContext";
-import { SettingsBlueIcon, BellIcon, CloseIcon, HamburgerMenu, Search} from "../assets/Icons";
+import { useSelector, useDispatch } from "react-redux";
+import { SettingsBlueIcon, BellIcon, CloseIcon, HamburgerMenu, Search } from "../assets/Icons";
+import { RootState } from "../config/store";
+import { toggleMobileSidebar, toggleSidebar } from "../redux/sidebar/sidebarSlice";
 
 const AppHeader: React.FC = () => {
-  const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
-
+  const dispatch = useDispatch();
   const location = useLocation();
+
+  // Get sidebar state from Redux
+  const { isMobileOpen } = useSelector((state: RootState) => state.sidebar);
 
   const getTitle = () => {
     switch (location.pathname) {
@@ -21,9 +25,9 @@ const AppHeader: React.FC = () => {
 
   const handleToggle = () => {
     if (window.innerWidth >= 991) {
-      toggleSidebar();
+      dispatch(toggleSidebar());
     } else {
-      toggleMobileSidebar();
+      dispatch(toggleMobileSidebar());
     }
   };
 
@@ -47,7 +51,7 @@ const AppHeader: React.FC = () => {
   return (
     <header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 border-b pb-4">
       <div className="flex flex-col items-center justify-between flex-grow lg:flex-row lg:px-8 px-2">
-        <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-none  border-gray-200 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
+        <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-none border-gray-200 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
           <button
             className="items-center justify-center w-10 h-10 bg-transparent rounded-lg z-99999 lg:h-11 lg:w-11 lg:border lg:hidden"
             onClick={handleToggle}
@@ -103,10 +107,7 @@ const AppHeader: React.FC = () => {
             </button>
 
             <div className="md:inline-block hidden">
-              <img
-                src="user.png"
-                className="rounded-full h-[60px] w-[60px]"
-              />
+              <img src="user.png" className="rounded-full h-[60px] w-[60px]" />
             </div>
           </div>
         </div>

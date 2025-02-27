@@ -1,10 +1,14 @@
-import { SidebarProvider, useSidebar } from "../context/SidebarContext";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
+import { RootState } from "../config/store";
 
 const LayoutContent: React.FC = () => {
-  const { isExpanded, isHovered, isMobileOpen } = useSidebar();
+  // Get sidebar state from Redux
+  const { isExpanded, isHovered, isMobileOpen } = useSelector(
+    (state: RootState) => state.sidebar
+  );
 
   return (
     <div className="min-h-screen xl:flex">
@@ -26,11 +30,7 @@ const LayoutContent: React.FC = () => {
 };
 
 const AppLayout: React.FC = () => {
-  return (
-    <SidebarProvider>
-      <LayoutContent />
-    </SidebarProvider>
-  );
+  return <LayoutContent />;
 };
 
 export default AppLayout;
